@@ -30,7 +30,7 @@ void fcfs(int Process[],int n,int Burst_time[])
 	{
 		total_wt=total_wt+wt[i];
 		total_tat=total_tat+tat[i];
-		printf("   %d",i+1);
+		printf("P%d",i+1);
 		printf("        %d",Burst_time[i]);
 		printf("        %d",wt[i]);
 		printf("              %d",tat[i]);
@@ -86,7 +86,7 @@ void sjf(int Process[],int Burst_time[], int n)
     {
         tat[i]=Burst_time[i]+wt[i];     //calculate turnaround time
         total+=tat[i];
-        printf("\np%d\t\t  %d\t\t    %d\t\t\t%d",Process[i],Burst_time[i],wt[i],tat[i]);
+        printf("\nP%d\t\t  %d\t\t    %d\t\t\t%d",Process[i],Burst_time[i],wt[i],tat[i]);
     }
  
     avg_tat=(float)total/n;     //average turnaround time
@@ -138,7 +138,7 @@ void idle_condition(int Process[],int bt[],int n)
     {
         tat[i]=bt[i]+wt[i];     //calculate turnaround time
         total+=tat[i];
-        printf("\np%d\t\t  %d\t\t    %d\t\t\t%d",Process[i],bt[i],wt[i],tat[i]);
+        printf("\nP%d\t\t  %d\t\t    %d\t\t\t%d",Process[i],bt[i],wt[i],tat[i]);
     }
  
     avg_tat=(float)total/n;     //average turnaround time
@@ -148,9 +148,16 @@ void idle_condition(int Process[],int bt[],int n)
 
 int main()
 {
-   int Process[]={1,2,3};
-   int Burst_time[]={8,4,1};
-   int n=sizeof Process/sizeof Process[0];
+   int Process[20],Burst_time[20],n,i;
+   printf("Enter the total number of Process : \n");
+   scanf("%d",&n);
+   printf("\nEnter Burst Time:\n");
+    for(i=0;i<n;i++)
+    {
+        printf("P%d:",i+1);
+        scanf("%d",&Burst_time[i]);
+        Process[i]=i+1;         //contains process number
+    }
    fcfs(Process,n,Burst_time);
    sjf(Process,Burst_time,n);
    idle_condition(Process,Burst_time,n);
